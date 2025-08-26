@@ -1,5 +1,6 @@
 // src/components/InstagramFeed.jsx
 import React from 'react';
+// eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion';
 import AnimatedSection from './AnimatedSection/AnimatedSection';
 import styles from './InstagramFeed.module.css';

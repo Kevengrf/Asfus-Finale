@@ -13,11 +13,25 @@ const ProtectedRoute = ({ children, adminOnly = false }) => {
   const { isAuthenticated, isAdmin, loading } = useAuth();
   const location = useLocation();
 
+  // POC MODE: Permitir acesso direto para demonstração
+  const isPOCMode = true; // Set to false in production
+
   // Enquanto o estado de autenticação está carregando, não renderiza nada
   if (loading) {
     return null; // Ou um componente de spinner/loading
   }
 
+  // POC MODE: Se estiver em modo POC, permitir acesso direto
+  if (isPOCMode) {
+    // Para rotas admin, simular usuário admin
+    if (adminOnly) {
+      return children;
+    }
+    // Para rotas de associado, simular usuário autenticado
+    return children;
+  }
+
+  // PRODUCTION MODE: Verificações normais de autenticação
   // Se não estiver autenticado, redireciona para a página de login
   if (!isAuthenticated) {
     return <Navigate to="/login" state={{ from: location }} replace />;

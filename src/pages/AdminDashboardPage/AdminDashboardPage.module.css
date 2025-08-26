@@ -4,6 +4,8 @@
   min-height: calc(100vh - 80px); /* Subtrai a altura do Navbar principal */
 }
 
+
+
 .sidebar {
   width: 240px;
   background-color: var(--light-bg);

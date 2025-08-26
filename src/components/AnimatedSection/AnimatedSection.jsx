@@ -1,5 +1,6 @@
 // src/components/AnimatedSection/AnimatedSection.jsx
 import React, { useEffect, useRef } from 'react';
+// eslint-disable-next-line no-unused-vars
 import { motion, useInView, useAnimation } from 'framer-motion';
 
 const AnimatedSection = ({ children, delay = 0.2, duration = 0.6, yOffset = 50 }) => {

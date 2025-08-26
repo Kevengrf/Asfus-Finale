@@ -6,40 +6,52 @@ import styles from './AdminDashboardPage.module.css';
 const AdminDashboardPage = () => {
   return (
     <div className={styles.dashboardLayout}>
-      <aside className={styles.sidebar}>
-        <nav className={styles.sideNav}>
-          <h3>Gerenciamento</h3>
-          <NavLink 
-            to="approvals" 
-            className={({ isActive }) => isActive ? `${styles.navLink} ${styles.active}` : styles.navLink}
-          >
-            Aprovações
-          </NavLink>
-          <NavLink 
-            to="news" 
-            className={({ isActive }) => isActive ? `${styles.navLink} ${styles.active}` : styles.navLink}
-          >
-            Notícias
-          </NavLink>
-          <NavLink 
-            to="convenios" 
-            className={({ isActive }) => isActive ? `${styles.navLink} ${styles.active}` : styles.navLink}
-          >
-            Convênios
-          </NavLink>
-          <NavLink 
-            to="events" 
-            className={({ isActive }) => isActive ? `${styles.navLink} ${styles.active}` : styles.navLink}
-          >
-            Eventos
-          </NavLink>
-        </nav>
-      </aside>
-      <main className={styles.mainContent}>
-        {/* O conteúdo da rota aninhada será renderizado aqui */}
-        <Outlet />
-      </main>
-    </div>
+        <aside className={styles.sidebar}>
+          <nav className={styles.sideNav}>
+            <h3>Gerenciamento</h3>
+            <NavLink 
+              to="approvals" 
+              className={({ isActive }) => isActive ? `${styles.navLink} ${styles.active}` : styles.navLink}
+            >
+              Aprovações
+            </NavLink>
+            <NavLink 
+              to="news" 
+              className={({ isActive }) => isActive ? `${styles.navLink} ${styles.active}` : styles.navLink}
+            >
+              Notícias
+            </NavLink>
+            <NavLink 
+              to="convenios" 
+              className={({ isActive }) => isActive ? `${styles.navLink} ${styles.active}` : styles.navLink}
+            >
+              Convênios
+            </NavLink>
+            <NavLink 
+              to="events" 
+              className={({ isActive }) => isActive ? `${styles.navLink} ${styles.active}` : styles.navLink}
+            >
+              Eventos
+            </NavLink>
+            <NavLink 
+              to="gallery" 
+              className={({ isActive }) => isActive ? `${styles.navLink} ${styles.active}` : styles.navLink}
+            >
+              Galeria
+            </NavLink>
+            <NavLink 
+              to="home-content" 
+              className={({ isActive }) => isActive ? `${styles.navLink} ${styles.active}` : styles.navLink}
+            >
+              Conteúdo da Página Inicial
+            </NavLink>
+          </nav>
+        </aside>
+        <main className={styles.mainContent}>
+          {/* O conteúdo da rota aninhada será renderizado aqui */}
+          <Outlet />
+        </main>
+      </div>
   );
 };
 

@@ -1,9 +1,11 @@
+
 /* src/pages/RegisterPage/RegisterPage.module.css */
 .pageWrapper {
   padding: 3rem 1rem;
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  background-color: var(--grey-bg);
 }
 
 .registerCard {
@@ -11,12 +13,12 @@
   max-width: 800px;
   background-color: var(--light-bg);
   padding: 2.5rem 3rem;
-  border-radius: var(--border-radius);
-  box-shadow: var(--shadow-md);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-xl);
 }
 
 .title {
-  color: var(--dark-text);
+  color: var(--primary-color);
   margin-bottom: 0.5rem;
   font-size: 2.2rem;
   text-align: center;
@@ -37,8 +39,8 @@
 
 .fieldset legend {
   font-size: 1.3rem;
-  font-weight: 500;
-  color: var(--primary-color);
+  font-weight: 600;
+  color: var(--dark-text);
   margin-bottom: 1.5rem;
   width: 100%;
   padding-bottom: 0.5rem;
@@ -49,6 +51,25 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1.5rem;
+}
+
+.formGrid input {
+  padding: 0.8rem 1rem;
+  border: 2px solid var(--border-color);
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background-color: var(--light-bg);
+}
+
+.formGrid input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(0, 150, 136, 0.1);
+}
+
+.formGrid input::placeholder {
+  color: var(--text-color-light);
 }
 
 .dependenteBox {
@@ -98,9 +119,14 @@
   width: 100%;
   padding: 0.8rem;
   font-weight: bold;
+  border-radius: var(--border-radius);
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 .addButton:hover {
-  background-color: rgba(0, 150, 136, 0.05); /* Usando primary-color com opacidade */
+  background-color: rgba(0, 150, 136, 0.05);
+  border-style: solid;
 }
 
 .submitButton {
@@ -110,7 +136,15 @@
   color: var(--light-text);
   font-size: 1.2rem;
   font-weight: bold;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
+.submitButton:hover {
+  background-color: var(--secondary-color);
+}
+
 .submitButton:disabled {
   background-color: var(--border-color);
   cursor: not-allowed;

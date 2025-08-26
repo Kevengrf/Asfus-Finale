@@ -1,7 +1,70 @@
+
 /* src/pages/HomePage/HomePage.module.css */
 .homePage {
   width: 100%;
   overflow-x: hidden; /* Evita scroll horizontal devido a animações */
+}
+
+/* Hero Section with CTA Card */
+.heroSection {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.carouselBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.carouselBackground::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(3px);
+  z-index: 2;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  max-width: 800px;
+  padding: 0 2rem;
+}
+
+.ctaCard {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 3rem;
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-xl);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.ctaCard h2 {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.ctaCard p {
+  font-size: 1.2rem;
+  color: var(--dark-text);
+  margin-bottom: 2rem;
+  line-height: 1.6;
 }
 
 /* Hero Section */
@@ -168,6 +231,128 @@
   transform: translateY(-3px);
   box-shadow: 0 6px 12px rgba(0,0,0,0.15);
 }
+
+/* About Section */
+.aboutSection {
+    padding: 4rem 2rem;
+    text-align: center;
+    background-color: var(--light-bg);
+}
+
+.aboutText {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto 2rem auto;
+}
+
+/* Leisure Features */
+.leisureFeatures {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto 3rem auto;
+}
+
+.feature {
+    background: var(--light-bg);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-md);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid var(--border-color);
+}
+
+.feature:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.featureIcon {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.feature h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+.feature p {
+    color: var(--text-color-light);
+    line-height: 1.5;
+}
+
+/* Enhanced CTA Section */
+.ctaSection {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: var(--light-text);
+    padding: 3rem 2rem;
+    text-align: center;
+    border-radius: var(--border-radius);
+    margin: 2rem auto;
+    max-width: 800px;
+}
+
+.ctaSection h3 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--light-text);
+}
+
+.ctaSection p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.buttonGroup {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.directAccessButton {
+    background-color: transparent;
+    color: var(--light-text);
+    border: 2px solid var(--light-text);
+    padding: 1rem 2rem;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    font-weight: bold;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.directAccessButton:hover {
+    background-color: var(--light-text);
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.adminAccessButton {
+    background-color: var(--secondary-color);
+    color: var(--light-text);
+    border: 2px solid var(--secondary-color);
+    padding: 1rem 2rem;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    font-weight: bold;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.adminAccessButton:hover {
+    background-color: var(--light-text);
+    color: var(--secondary-color);
+    text-decoration: none;
+    transform: translateY(-2px);
+}
+
 
 /* Responsividade */
 @media (max-width: 768px) {

@@ -1,3 +1,4 @@
+
 // src/App.jsx
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
@@ -13,6 +14,7 @@ import LoginPage from './pages/LoginPage/LoginPage';
 import AdminLoginPage from './pages/AdminLoginPage/AdminLoginPage';
 import RegisterPage from './pages/RegisterPage/RegisterPage';
 import PortalPage from './pages/PortalPage/PortalPage';
+import GalleryPage from './pages/GalleryPage/GalleryPage';
 
 // Admin Pages
 import AdminDashboardPage from './pages/AdminDashboardPage/AdminDashboardPage';
@@ -20,6 +22,9 @@ import ApprovalsManagement from './pages/admin/ApprovalsManagement';
 import NewsManagement from './pages/admin/NewsManagement';
 import ConveniosManagement from './pages/admin/ConveniosManagement';
 import EventsManagement from './pages/admin/EventsManagement';
+import GalleryManagement from './pages/admin/GalleryManagement';
+import HomeContentManagement from './pages/admin/HomeContentManagement';
+import AssociatePage from './pages/AssociatePage/AssociatePage';
 
 function App() {
   return (
@@ -33,11 +38,16 @@ function App() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/admin/login" element={<AdminLoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
+            <Route path="/gallery" element={<GalleryPage />} />
 
             {/* Rota Protegida para Associados */}
             <Route 
               path="/portal" 
               element={<ProtectedRoute><PortalPage /></ProtectedRoute>}
+            />
+            <Route 
+              path="/associate" 
+              element={<ProtectedRoute><AssociatePage /></ProtectedRoute>}
             />
 
             {/* Rotas Protegidas e Aninhadas para Administradores */}
@@ -50,6 +60,8 @@ function App() {
               <Route path="news" element={<NewsManagement />} />
               <Route path="convenios" element={<ConveniosManagement />} />
               <Route path="events" element={<EventsManagement />} />
+              <Route path="gallery" element={<GalleryManagement />} />
+              <Route path="home-content" element={<HomeContentManagement />} />
             </Route>
 
             {/* Rota para Not Found */}

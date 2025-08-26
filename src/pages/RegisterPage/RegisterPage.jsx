@@ -68,39 +68,43 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className={styles.registerContainer}>
-      <div className={styles.registerBox}>
+    <div className={styles.pageWrapper}>
+      <div className={styles.registerCard}>
         <h1 className={styles.title}>Pré-Cadastro de Associado</h1>
         <p className={styles.subtitle}>Preencha seus dados para iniciar o processo de associação.</p>
 
-        {error && <p className={styles.errorMessage}>{error}</p>}
-        {success && <p className={styles.successMessage}>{success}</p>}
+        {error && <p className={styles.alertError}>{error}</p>}
+        {success && <p className={styles.alertSuccess}>{success}</p>}
 
         <form onSubmit={handleSubmit}>
-          {/* Dados do Titular */}
           <fieldset className={styles.fieldset}>
             <legend>Dados do Titular</legend>
-            <input type="text" name="nome" placeholder="Nome Completo" onChange={handleTitularChange} required />
-            <input type="email" name="email" placeholder="Email" onChange={handleTitularChange} required />
-            <input type="password" name="senha" placeholder="Senha (mínimo 6 caracteres)" onChange={handleTitularChange} required />
-            <input type="text" name="cpf" placeholder="CPF" onChange={handleTitularChange} required />
-            <input type="date" name="dataNascimento" placeholder="Data de Nascimento" onChange={handleTitularChange} required />
-            <input type="tel" name="telefone" placeholder="Telefone" onChange={handleTitularChange} required />
+            <div className={styles.formGrid}>
+              <input type="text" name="nome" placeholder="Nome Completo" onChange={handleTitularChange} required />
+              <input type="email" name="email" placeholder="Email" onChange={handleTitularChange} required />
+              <input type="password" name="senha" placeholder="Senha (mínimo 6 caracteres)" onChange={handleTitularChange} required />
+              <input type="text" name="cpf" placeholder="CPF" onChange={handleTitularChange} required />
+              <input type="date" name="dataNascimento" placeholder="Data de Nascimento" onChange={handleTitularChange} required />
+              <input type="tel" name="telefone" placeholder="Telefone" onChange={handleTitularChange} required />
+            </div>
           </fieldset>
 
-          {/* Dados dos Dependentes */}
           <fieldset className={styles.fieldset}>
             <legend>Dependentes</legend>
             {formData.dependentes.map((dependente, index) => (
-              <div key={index} className={styles.dependenteGroup}>
-                <h4>Dependente {index + 1}</h4>
-                <input type="text" name="nome" placeholder="Nome do Dependente" value={dependente.nome} onChange={(e) => handleDependenteChange(index, e)} required />
-                <input type="date" name="dataNascimento" placeholder="Data de Nascimento" value={dependente.dataNascimento} onChange={(e) => handleDependenteChange(index, e)} required />
-                <input type="text" name="parentesco" placeholder="Parentesco" value={dependente.parentesco} onChange={(e) => handleDependenteChange(index, e)} required />
-                <button type="button" className={styles.removeButton} onClick={() => removerDependente(index)}>Remover</button>
+              <div key={index} className={styles.dependenteBox}>
+                <div className={styles.dependenteHeader}>
+                  <h4>Dependente {index + 1}</h4>
+                  <button type="button" className={styles.removeButton} onClick={() => removerDependente(index)}>×</button>
+                </div>
+                <div className={styles.formGrid}>
+                  <input type="text" name="nome" placeholder="Nome do Dependente" value={dependente.nome} onChange={(e) => handleDependenteChange(index, e)} required />
+                  <input type="date" name="dataNascimento" placeholder="Data de Nascimento" value={dependente.dataNascimento} onChange={(e) => handleDependenteChange(index, e)} required />
+                  <input type="text" name="parentesco" placeholder="Parentesco" value={dependente.parentesco} onChange={(e) => handleDependenteChange(index, e)} required />
+                </div>
               </div>
             ))}
-            <button type="button" className={styles.addButton} onClick={adicionarDependente}>Adicionar Dependente</button>
+            <button type="button" className={styles.addButton} onClick={adicionarDependente}>+ Adicionar Dependente</button>
           </fieldset>
 
           <button type="submit" className={styles.submitButton} disabled={loading}>

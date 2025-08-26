@@ -1,5 +1,5 @@
 // src/pages/PortalPage/PortalPage.jsx
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import useAuth from '../../hooks/useAuth';
 import apiService from '../../api/apiService';
 import Modal from '../../components/Modal/Modal';
@@ -13,7 +13,7 @@ const PortalPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Função para buscar os dados do associado
-  const fetchAssociadoData = async () => {
+  const fetchAssociadoData = useCallback(async () => {
     try {
       setLoading(true);
       // O ID do usuário é pego do token decodificado
@@ -26,13 +26,13 @@ const PortalPage = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [user.id]);
 
   useEffect(() => {
     if (user?.id) {
       fetchAssociadoData();
     }
-  }, [user]);
+  }, [user, fetchAssociadoData]);
 
   const handleAddDependente = async (dependenteData) => {
     try {

@@ -12,8 +12,11 @@ const Footer = () => {
         </div>
         <div className={styles.footerSection}>
           <h4>Contato</h4>
-          <p><strong>Endereço:</strong> Avenida Laurentino Gomes, S/N, Gaibu, Cabo de Santo Agostinho - PE, 54500-992.</p>
-          <p><strong>Telefones:</strong> (81) 3527-5005 / (81) 3527-5000.</p>
+          <p><strong>Endereço:</strong> Rua Laurentino Gomes, s/n - Gaibu, Cabo de Santo Agostinho - PE, 54500-992.</p>
+          <p><strong>Telefone:</strong> (81) 3512-0735</p>
+          <p><strong>WhatsApp:</strong> (81) 99999-9999</p>
+          <p><strong>Email:</strong> contato@asfus.com.br</p>
+          <p><strong>Horário de Funcionamento:</strong> Segunda a Sexta, 8h às 18h</p>
         </div>
         <div className={styles.footerSection}>
           <h4>Redes Sociais</h4>

@@ -1,115 +1,51 @@
-// src/pages/HomePage/HomePage.jsx
 import React from 'react';
+import Carousel from '../../components/Carousel/Carousel';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import AnimatedSection from '../../components/AnimatedSection/AnimatedSection';
 import styles from './HomePage.module.css';
-
-// Ícones SVG para a seção de estatísticas
-const ShipIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M17 17H22V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 17H12V10H17V17ZM17 12L12 17L7 12L12 7L17 12Z" />
-    <path d="M12 2V12" />
-    <path d="M12 12H22" />
-    <path d="M12 12H2" />
-  </svg>
-);
-
-const UsersIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-    <circle cx="9" cy="7" r="4" />
-    <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-  </svg>
-);
-
-const CheckCircleIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-    <polyline points="22 4 12 14.01 9 11.01" />
-  </svg>
-);
+import AnimatedSection from '../../components/AnimatedSection/AnimatedSection';
 
 const HomePage = () => {
   return (
-    <div className={styles.homePage}>
-      {/* Seção Hero */}
-      <section className={styles.heroSection}>
+    <div>
+      <div className={styles.heroSection}>
+        <div className={styles.carouselBackground}>
+          <Carousel />
+        </div>
         <div className={styles.heroContent}>
-          <AnimatedSection delay={0.2}>
-            <h1 className={styles.heroTitle}>O Futuro do Porto de Suape Começa Aqui.</h1>
-          </AnimatedSection>
-          <AnimatedSection delay={0.4}>
-            <p className={styles.heroSubtitle}>Conectando pessoas, negócios e o mundo através da inovação e eficiência.</p>
-          </AnimatedSection>
-          <AnimatedSection delay={0.6}>
-            <Link to="/register" className={styles.heroButton}>Junte-se à ASFUS</Link>
-          </AnimatedSection>
+          <div className={styles.ctaCard}>
+            <h2>Venha Fazer Parte da Nossa Comunidade!</h2>
+            <p>Associe-se e desfrute de todos os benefícios que a ASFUS oferece</p>
+            <div className={styles.buttonGroup}>
+              <Link to="/register" className={styles.ctaButton}>Seja um Associado</Link>
+              <Link to="/associate" className={styles.directAccessButton}>Acesso Direto Associado</Link>
+              <Link to="/admin/dashboard" className={styles.adminAccessButton}>Acesso Direto Admin</Link>
+            </div>
+          </div>
         </div>
-      </section>
-
-      {/* Seção de Estatísticas */}
-      <section className={styles.statsSection}>
-        <div className={styles.statsContainer}>
-          <AnimatedSection delay={0.1} yOffset={30}>
-            <motion.div className={styles.statCard} whileHover={{ scale: 1.03, y: -5 }}>
-              <ShipIcon />
-              <span className={styles.statNumber}>+200</span>
-              <p className={styles.statText}>Navios Esperados/Mês</p>
-            </motion.div>
-          </AnimatedSection>
-          <AnimatedSection delay={0.2} yOffset={30}>
-            <motion.div className={styles.statCard} whileHover={{ scale: 1.03, y: -5 }}>
-              <UsersIcon />
-              <span className={styles.statNumber}>+5.000</span>
-              <p className={styles.statText}>Associados Ativos</p>
-            </motion.div>
-          </AnimatedSection>
-          <AnimatedSection delay={0.3} yOffset={30}>
-            <motion.div className={styles.statCard} whileHover={{ scale: 1.03, y: -5 }}>
-              <CheckCircleIcon />
-              <span className={styles.statNumber}>99%</span>
-              <p className={styles.statText}>Eficiência Operacional</p>
-            </motion.div>
-          </AnimatedSection>
-        </div>
-      </section>
-
-      {/* Seção de Destaques/Benefícios (mantida do original, mas com AnimatedSection) */}
-      <section className={styles.featuresSection}>
-        <AnimatedSection delay={0.1}>
-          <h2 className={styles.sectionTitle}>Nossos Benefícios</h2>
-        </AnimatedSection>
-        <div className={styles.featuresGrid}>
-          <AnimatedSection delay={0.2} yOffset={30}>
-            <motion.div className={styles.featureCard} whileHover={{ scale: 1.03, y: -5 }}>
-              <h3>Convênios Médicos</h3>
-              <p>Acesso a uma ampla rede de hospitais, clínicas e laboratórios com condições especiais.</p>
-            </motion.div>
-          </AnimatedSection>
-          <AnimatedSection delay={0.3} yOffset={30}>
-            <motion.div className={styles.featureCard} whileHover={{ scale: 1.03, y: -5 }}>
-              <h3>Planos Odontológicos</h3>
-              <p>Cuide do seu sorriso com os melhores planos odontológicos do mercado.</p>
-            </motion.div>
-          </AnimatedSection>
-          <AnimatedSection delay={0.4} yOffset={30}>
-            <motion.div className={styles.featureCard} whileHover={{ scale: 1.03, y: -5 }}>
-              <h3>Lazer e Cultura</h3>
-              <p>Descontos em cinemas, teatros, parques e muito mais para você e sua família.</p>
-            </motion.div>
-          </AnimatedSection>
-        </div>
-      </section>
-
-      {/* Seção de Chamada para Ação (mantida do original, mas com AnimatedSection) */}
-      <section className={styles.ctaSection}>
-        <AnimatedSection delay={0.1}>
-          <div className={styles.ctaContent}>
-            <h2>Já é nosso associado?</h2>
-            <p>Acesse o portal para conferir seus dados, dependentes e novidades.</p>
-            <Link to="/login" className={styles.ctaButton}>Acessar Portal</Link>
+      </div>
+      
+      <section className={styles.aboutSection}>
+        <AnimatedSection>
+          <h2 className={styles.sectionTitle}>Um Espaço de Lazer e União para a Família</h2>
+          <p className={styles.aboutText}>
+            A ASFUS é mais do que uma associação; é uma comunidade que valoriza o bem-estar e a integração de seus associados e suas famílias. Oferecemos um espaço seguro e acolhedor, com opções de lazer, eventos sociais e convênios que proporcionam tranquilidade e qualidade de vida.
+          </p>
+          <div className={styles.leisureFeatures}>
+            <div className={styles.feature}>
+              <span className={styles.featureIcon}>🎯</span>
+              <h3>Atividades Recreativas</h3>
+              <p>Diversas opções de lazer para todas as idades</p>
+            </div>
+            <div className={styles.feature}>
+              <span className={styles.featureIcon}>🏊‍♂️</span>
+              <h3>Piscina e Esportes</h3>
+              <p>Infraestrutura completa para prática esportiva</p>
+            </div>
+            <div className={styles.feature}>
+              <span className={styles.featureIcon}>🎉</span>
+              <h3>Eventos Sociais</h3>
+              <p>Festejos e confraternizações regulares</p>
+            </div>
           </div>
         </AnimatedSection>
       </section>

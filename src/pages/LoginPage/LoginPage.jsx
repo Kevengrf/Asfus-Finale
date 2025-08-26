@@ -46,6 +46,19 @@ const LoginPage = () => {
     }
   };
 
+  const handleDemoLogin = async () => {
+    setError('');
+    setLoading(true);
+    const result = await login('associado@email.com', '123');
+    setLoading(false);
+
+    if (result.success) {
+      navigate(from, { replace: true });
+    } else {
+      setError(result.message || 'Ocorreu um erro no login de demonstração.');
+    }
+  };
+
   return (
     <div className={styles.loginContainer}>
       <div className={styles.loginBox}>
@@ -84,6 +97,9 @@ const LoginPage = () => {
           </div>
           <button type="submit" className={styles.loginButton} disabled={loading}>
             {loading ? 'Entrando...' : 'Entrar'}
+          </button>
+          <button type="button" className={`${styles.loginButton} ${styles.demoButton}`} onClick={handleDemoLogin} disabled={loading}>
+            Acesso Rápido (Demonstração)
           </button>
         </form>
       </div>
