@@ -31,6 +31,22 @@ export const getAssociado = (req, res) => {
   }
 };
 
+export const getDependentes = (req, res) => {
+  try {
+    const { id } = req.params;
+    const associado = associados.find(a => a.id === parseInt(id));
+
+    if (!associado) {
+      return res.status(404).json({ message: 'Associado não encontrado.' });
+    }
+
+    res.json(associado.dependentes);
+  } catch (error) {
+    console.error('Erro ao buscar dependentes:', error);
+    res.status(500).json({ message: 'Erro interno do servidor.' });
+  }
+};
+
 export const addDependente = (req, res) => {
   try {
     const { id } = req.params;
@@ -52,6 +68,32 @@ export const addDependente = (req, res) => {
     res.status(201).json(newDependente);
   } catch (error) {
     console.error('Erro ao adicionar dependente:', error);
+    res.status(500).json({ message: 'Erro interno do servidor.' });
+  }
+};
+
+export const updateDependente = (req, res) => {
+  try {
+    const { id, dependenteId } = req.params;
+    const { nome, dataNascimento, parentesco } = req.body;
+
+    const associado = associados.find(a => a.id === parseInt(id));
+    if (!associado) {
+      return res.status(404).json({ message: 'Associado não encontrado.' });
+    }
+
+    const dependente = associado.dependentes.find(d => d.id === parseInt(dependenteId));
+    if (!dependente) {
+      return res.status(404).json({ message: 'Dependente não encontrado.' });
+    }
+
+    dependente.nome = nome || dependente.nome;
+    dependente.dataNascimento = dataNascimento || dependente.dataNascimento;
+    dependente.parentesco = parentesco || dependente.parentesco;
+
+    res.json(dependente);
+  } catch (error) {
+    console.error('Erro ao atualizar dependente:', error);
     res.status(500).json({ message: 'Erro interno do servidor.' });
   }
 };

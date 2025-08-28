@@ -171,3 +171,57 @@
     padding: 1rem;
   }
 }
+
+/* Approval Cards */
+.approvalGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.approvalCard {
+  background-color: var(--light-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.cardBody {
+  padding: 1.5rem;
+}
+
+.cardBody p {
+  margin-bottom: 0.5rem;
+  color: var(--dark-text);
+}
+
+.cardActions {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem 1.5rem;
+  background-color: var(--grey-bg);
+  border-top: 1px solid var(--border-color);
+}
+
+.approveButton {
+  background-color: #28a745 !important; /* Use !important to override existing styles */
+  color: white !important;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  margin-left: 0.5rem;
+}
+
+.rejectButton {
+  background-color: #dc3545 !important; /* Use !important to override existing styles */
+  color: white !important;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+}

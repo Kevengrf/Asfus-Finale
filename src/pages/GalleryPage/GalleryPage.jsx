@@ -1,99 +1,104 @@
-
-// src/pages/GalleryPage/GalleryPage.jsx
-import React, { useState, useEffect } from 'react';
-import apiService from '../../api/apiService';
+import React, { useState, useEffect, useCallback } from 'react'; // Added useCallback
 import styles from './GalleryPage.module.css';
-import Modal from '../../components/Modal/Modal';
+
+// Use Vite's import.meta.glob to get all images from the specified folder
+const modules = import.meta.glob('../../assets/home/galery*.jpg', { eager: true, as: 'url' });
+
+const galleryImages = Object.keys(modules).map((path, index) => {
+  const match = path.match(/galery(\d+)\.jpg$/);
+  if (match) {
+    return {
+      id: parseInt(match[1]),
+      imageUrl: modules[path],
+      caption: `Galeria Imagem ${match[1]}`
+    };
+  }
+  return null;
+}).filter(Boolean);
+
+galleryImages.sort((a, b) => a.id - b.id);
+
 
 const GalleryPage = () => {
   const [photos, setPhotos] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
-  const [selectedPhoto, setSelectedPhoto] = useState(null);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(null);
+  const [isViewerOpen, setIsViewerOpen] = useState(false);
 
   useEffect(() => {
-    const fetchPhotos = async () => {
-      try {
-        const response = await apiService.get('/photos');
-        setPhotos(response.data);
-      } catch {
-        setError('Falha ao buscar as fotos.');
-      }
-      setLoading(false);
-    };
-
-    fetchPhotos();
+    setPhotos(galleryImages);
   }, []);
 
-  const openModal = (photo) => {
-    setSelectedPhoto(photo);
-  };
+  const openViewer = useCallback((index) => {
+    setSelectedImageIndex(index);
+    setIsViewerOpen(true);
+  }, []);
 
-  const closeModal = () => {
-    setSelectedPhoto(null);
-  };
+  const closeViewer = useCallback(() => {
+    setIsViewerOpen(false);
+    setSelectedImageIndex(null);
+  }, []);
 
-  if (loading) return (
-    <div className={styles.loadingContainer}>
-      <div className={styles.loadingSpinner}></div>
-      <p>Carregando galeria...</p>
-    </div>
-  );
-  
-  if (error) return (
-    <div className={styles.errorContainer}>
-      <p className={styles.errorMessage}>{error}</p>
-    </div>
-  );
+  const goToNext = useCallback(() => {
+    setSelectedImageIndex((prevIndex) => (prevIndex + 1) % photos.length);
+  }, [photos.length]);
+
+  const goToPrev = useCallback(() => {
+    setSelectedImageIndex((prevIndex) => (prevIndex - 1 + photos.length) % photos.length);
+  }, [photos.length]);
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (!isViewerOpen) return;
+      if (event.key === 'ArrowRight') {
+        goToNext();
+      } else if (event.key === 'ArrowLeft') {
+        goToPrev();
+      } else if (event.key === 'Escape') {
+        closeViewer();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isViewerOpen, goToNext, goToPrev, closeViewer]);
+
 
   return (
     <div className={styles.galleryContainer}>
-      <div className={styles.galleryHeader}>
-        <h1>Galeria de Fotos ASFUS</h1>
-        <p>Momentos especiais e memórias da nossa comunidade</p>
-      </div>
-      
+      <h1 className={styles.title}>Galeria de Fotos</h1>
       {photos.length === 0 ? (
-        <div className={styles.emptyGallery}>
-          <span className={styles.emptyIcon}>📷</span>
-          <h3>Galeria Vazia</h3>
-          <p>Ainda não há fotos na galeria. Volte em breve!</p>
-        </div>
+        <p>Carregando imagens da galeria...</p>
       ) : (
         <div className={styles.photoGrid}>
-          {photos.map(photo => (
-            <div key={photo.id} className={styles.photoCard} onClick={() => openModal(photo)}>
-              <div className={styles.photoImage}>
-                <img src={photo.imageUrl} alt={photo.caption || 'Foto ASFUS'} />
-                <div className={styles.photoOverlay}>
-                  <span className={styles.viewIcon}>👁️</span>
-                </div>
+          {photos.map((photo, index) => (
+            <div key={photo.id} className={styles.photoCard} onClick={() => openViewer(index)}>
+              <img src={photo.imageUrl} alt={photo.caption || 'Foto da galeria'} />
+              <div className={styles.viewMoreOverlay}>
+                <p>Ver Mais</p>
               </div>
-              {photo.caption && (
-                <div className={styles.photoCaption}>
-                  <p>{photo.caption}</p>
-                </div>
-              )}
             </div>
           ))}
         </div>
       )}
 
-      {selectedPhoto && (
-        <Modal onClose={closeModal}>
-          <div className={styles.modalContent}>
-            <img 
-              src={selectedPhoto.imageUrl} 
-              alt={selectedPhoto.caption || 'Foto ASFUS'} 
-              className={styles.modalImage}
+      {isViewerOpen && selectedImageIndex !== null && (
+        <div className={styles.imageViewerOverlay} onClick={closeViewer}>
+          <div className={styles.imageViewerContent} onClick={(e) => e.stopPropagation()}>
+            <button className={styles.closeButton} onClick={closeViewer}>×</button>
+            <button className={styles.navButtonLeft} onClick={goToPrev}>&lt;</button>
+            <img
+              src={photos[selectedImageIndex].imageUrl}
+              alt={photos[selectedImageIndex].caption || 'Imagem da galeria'}
+              className={styles.viewerImage}
             />
-            {selectedPhoto.caption && (
-              <div className={styles.modalCaption}>
-                <h3>{selectedPhoto.caption}</h3>
-              </div>
+            <button className={styles.navButtonRight} onClick={goToNext}>&gt;</button>
+            {photos[selectedImageIndex].caption && (
+              <p className={styles.viewerCaption}>{photos[selectedImageIndex].caption}</p>
             )}
           </div>
-        </Modal>
+        </div>
       )}
     </div>
   );

@@ -1,4 +1,3 @@
-
 // src/App.jsx
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
@@ -15,6 +14,7 @@ import AdminLoginPage from './pages/AdminLoginPage/AdminLoginPage';
 import RegisterPage from './pages/RegisterPage/RegisterPage';
 import PortalPage from './pages/PortalPage/PortalPage';
 import GalleryPage from './pages/GalleryPage/GalleryPage';
+import ContactPage from './pages/ContactPage/ContactPage'; // New: Contact Page
 
 // Admin Pages
 import AdminDashboardPage from './pages/AdminDashboardPage/AdminDashboardPage';
@@ -24,7 +24,10 @@ import ConveniosManagement from './pages/admin/ConveniosManagement';
 import EventsManagement from './pages/admin/EventsManagement';
 import GalleryManagement from './pages/admin/GalleryManagement';
 import HomeContentManagement from './pages/admin/HomeContentManagement';
-import AssociatePage from './pages/AssociatePage/AssociatePage';
+import AssociatePage from './pages/AssociatePage/AssociatePage'; // This might be removed or repurposed later
+
+// New: Associate Dashboard Page
+import AssociateDashboardPage from './pages/AssociateDashboardPage/AssociateDashboardPage';
 
 function App() {
   return (
@@ -39,15 +42,17 @@ function App() {
             <Route path="/admin/login" element={<AdminLoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/gallery" element={<GalleryPage />} />
+            <Route path="/contact" element={<ContactPage />} />
 
             {/* Rota Protegida para Associados */}
             <Route 
               path="/portal" 
-              element={<ProtectedRoute><PortalPage /></ProtectedRoute>}
+              element={<ProtectedRoute><AssociateDashboardPage /></ProtectedRoute>} // Changed to new dashboard
             />
+            {/* The /associate route might be redundant now, depending on user's intent */}
             <Route 
               path="/associate" 
-              element={<ProtectedRoute><AssociatePage /></ProtectedRoute>}
+              element={<ProtectedRoute><AssociateDashboardPage /></ProtectedRoute>} // Also changed to new dashboard
             />
 
             {/* Rotas Protegidas e Aninhadas para Administradores */}
